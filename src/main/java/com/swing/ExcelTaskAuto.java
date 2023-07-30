@@ -239,11 +239,12 @@ public class ExcelTaskAuto extends JFrame {
 								+ "_" + fileName1;
 						FileOutputStream outputStream11 = new FileOutputStream(target1Path);
 						workBookOutput1.write(outputStream11);
-						
+
 						fileName1ForCount = fileName1;
 						filePathForCount = target1Path;
 						targetFolderForCount = folderPath;
-						
+						sheetCount = 0;
+
 					} catch (FileNotFoundException ee) {
 						countDup++;
 						JOptionPane.showMessageDialog(ExcelTaskAuto.this,
@@ -266,13 +267,12 @@ public class ExcelTaskAuto extends JFrame {
 								+ "_" + fileName1;
 						FileOutputStream outputStream1 = new FileOutputStream(target1Path1);
 						workBook1.write(outputStream1);
-						
-						
+
 						fileName1ForCount = fileName1;
 						filePathForCount = target1Path1;
 						targetFolderForCount = folderPath;
-						
-						
+						sheetCount = 0;
+
 					} catch (FileNotFoundException ee) {
 						countDup++;
 						JOptionPane.showMessageDialog(ExcelTaskAuto.this,
@@ -350,11 +350,12 @@ public class ExcelTaskAuto extends JFrame {
 								+ "_" + fileName2;
 						FileOutputStream outputStream22 = new FileOutputStream(target2Path);
 						workBookOutput2.write(outputStream22);
-						
+
 						fileName2ForCount = fileName2;
 						targetFolderForCount = folderPath;
 						filePath2ForCount = target2Path;
-						
+						sheetCount2 = 0;
+
 					} catch (FileNotFoundException ee) {
 						countDup++;
 						JOptionPane.showMessageDialog(ExcelTaskAuto.this,
@@ -376,11 +377,12 @@ public class ExcelTaskAuto extends JFrame {
 								+ "_" + fileName2;
 						FileOutputStream outputStream2 = new FileOutputStream(target2Path2);
 						workBook2.write(outputStream2);
-						
+
 						fileName2ForCount = fileName2;
 						filePath2ForCount = target2Path2;
 						targetFolderForCount = folderPath;
-						
+						sheetCount2 = 0;
+
 					} catch (FileNotFoundException ee) {
 						countDup++;
 						JOptionPane.showMessageDialog(ExcelTaskAuto.this,
@@ -392,7 +394,7 @@ public class ExcelTaskAuto extends JFrame {
 							"Excel", JOptionPane.ERROR_MESSAGE);
 				}
 			}
-			
+
 			workBook1.close();
 			workBook2.close();
 			workBook1Copy.close();
@@ -617,6 +619,7 @@ public class ExcelTaskAuto extends JFrame {
 						fileName1ForCount = fileName1;
 						filePathForCount = target1Path;
 						targetFolderForCount = folderPath;
+						sheetCount = 0;
 					} catch (FileNotFoundException ee) {
 						countDup++;
 						JOptionPane.showMessageDialog(ExcelTaskAuto.this,
@@ -641,6 +644,7 @@ public class ExcelTaskAuto extends JFrame {
 						fileName1ForCount = fileName1;
 						filePathForCount = target1Path1;
 						targetFolderForCount = folderPath;
+						sheetCount = 0;
 					} catch (FileNotFoundException ee) {
 						countDup++;
 						JOptionPane.showMessageDialog(ExcelTaskAuto.this,
@@ -717,7 +721,8 @@ public class ExcelTaskAuto extends JFrame {
 						fileName2ForCount = fileName2;
 						targetFolderForCount = folderPath;
 						filePath2ForCount = target2Path;
-						} catch (FileNotFoundException ee) {
+						sheetCount2 = 0;
+					} catch (FileNotFoundException ee) {
 						countDup++;
 						JOptionPane.showMessageDialog(ExcelTaskAuto.this,
 								"files 2 does'nt have Same data No Excel created", "Excel", JOptionPane.ERROR_MESSAGE);
@@ -739,6 +744,7 @@ public class ExcelTaskAuto extends JFrame {
 						fileName2ForCount = fileName2;
 						filePath2ForCount = target2Path2;
 						targetFolderForCount = folderPath;
+						sheetCount2 = 0;
 					} catch (FileNotFoundException ee) {
 						countDup++;
 						JOptionPane.showMessageDialog(ExcelTaskAuto.this,
@@ -930,7 +936,8 @@ public class ExcelTaskAuto extends JFrame {
 					fileName1ForCount = fileName1;
 					filePathForCount = target1Path;
 					targetFolderForCount = folderPath;
-					
+					sheetCount = 0;
+
 				} catch (FileNotFoundException ee) {
 					counterMain++;
 					JOptionPane.showMessageDialog(ExcelTaskAuto.this,
@@ -947,11 +954,12 @@ public class ExcelTaskAuto extends JFrame {
 							+ "_" + fileName1;
 					FileOutputStream outputStream1 = new FileOutputStream(target1Path1);
 					workBook1.write(outputStream1);
-					
+
 					fileName1ForCount = fileName1;
 					filePathForCount = target1Path1;
 					targetFolderForCount = folderPath;
-					
+					sheetCount = 0;
+
 				} catch (FileNotFoundException ee) {
 					counterMain++;
 					JOptionPane.showMessageDialog(ExcelTaskAuto.this,
@@ -1021,8 +1029,9 @@ public class ExcelTaskAuto extends JFrame {
 					fileName2ForCount = fileName2;
 					targetFolderForCount = folderPath;
 					filePath2ForCount = target2Path;
-					
-					} catch (FileNotFoundException ee) {
+					sheetCount2 = 0;
+
+				} catch (FileNotFoundException ee) {
 					counterMain++;
 					JOptionPane.showMessageDialog(ExcelTaskAuto.this,
 							"files 2 does'nt have unique data No Excel created", "Excel", JOptionPane.ERROR_MESSAGE);
@@ -1035,11 +1044,12 @@ public class ExcelTaskAuto extends JFrame {
 							+ "_" + fileName2;
 					FileOutputStream outputStream2 = new FileOutputStream(target2Path2);
 					workBook2.write(outputStream2);
-					
+
 					fileName2ForCount = fileName2;
 					filePath2ForCount = target2Path2;
 					targetFolderForCount = folderPath;
-					
+					sheetCount2 = 0;
+
 				} catch (FileNotFoundException ee) {
 					counterMain++;
 					JOptionPane.showMessageDialog(ExcelTaskAuto.this,
@@ -1212,7 +1222,7 @@ public class ExcelTaskAuto extends JFrame {
 					}
 				}
 
-				// create new folder OUTOUT
+				// new excel will be generated here
 
 				try {
 					System.out.println("Unique Excel1 created");
@@ -1223,6 +1233,7 @@ public class ExcelTaskAuto extends JFrame {
 					fileName1ForCount = fileName1;
 					filePathForCount = target1Path;
 					targetFolderForCount = folderPath;
+					sheetCount = 0;
 
 				} catch (FileNotFoundException ee) {
 					counterMain++;
@@ -1239,11 +1250,12 @@ public class ExcelTaskAuto extends JFrame {
 					String target1Path1 = filecreateFolder + "\\ChildOutput_ComparedBy_" + fileName1;
 					FileOutputStream outputStream1 = new FileOutputStream(target1Path1);
 					workBook1.write(outputStream1);
-					
+
 					fileName1ForCount = fileName1;
 					filePathForCount = target1Path1;
 					targetFolderForCount = folderPath;
-					
+					sheetCount = 0;
+
 				} catch (FileNotFoundException ee) {
 					counterMain++;
 					JOptionPane.showMessageDialog(ExcelTaskAuto.this,
@@ -1308,12 +1320,13 @@ public class ExcelTaskAuto extends JFrame {
 					String target2Path = filecreateFolder + "\\ChildOutput2_ComparedBy_" + fileName2;
 					FileOutputStream outputStream22 = new FileOutputStream(target2Path);
 					workBookOutput2.write(outputStream22);
-					
+
 					fileName2ForCount = fileName2;
 					targetFolderForCount = folderPath;
 					filePath2ForCount = target2Path;
-					
-					} catch (FileNotFoundException ee) {
+					sheetCount2 = 0;
+
+				} catch (FileNotFoundException ee) {
 					counterMain++;
 					JOptionPane.showMessageDialog(ExcelTaskAuto.this,
 							"files 2 does'nt have unique data No Excel created", "Excel", JOptionPane.ERROR_MESSAGE);
@@ -1329,6 +1342,7 @@ public class ExcelTaskAuto extends JFrame {
 					fileName2ForCount = fileName2;
 					filePath2ForCount = target2Path2;
 					targetFolderForCount = folderPath;
+					sheetCount2 = 0;
 				} catch (FileNotFoundException ee) {
 					counterMain++;
 					JOptionPane.showMessageDialog(ExcelTaskAuto.this,
@@ -1356,29 +1370,48 @@ public class ExcelTaskAuto extends JFrame {
 		}
 		return counterMain;
 	}
-	
-	
-	private int countExcel(String filePath, String folderPath, String fileName, int selectedCounted, String selectedCountedName) {
 
-		filecreateFolder = new File(folderPath + "\\Output");
-		
+	private int countExcel(String filePath, String folderPath, String fileName, int selectedCounted, int selectedSheet,
+			String selectedCountedName) {
+
+		System.out.println("inside countExcel");
+
+		System.out.println("filePath:" + filePath);
+		System.out.println("folderPath:" + folderPath);
+		System.out.println("fileName:" + fileName);
+		System.out.println("selectedCounted:" + selectedCounted);
+		System.out.println("selectedSheet:" + selectedSheet);
+		System.out.println("selectedCountedName:" + selectedCountedName);
+
+//		filecreateFolder = new File(folderPath + "\\Output");
+
 		int count = 0;
 		try {
 
 			FileInputStream file1Count = new FileInputStream(filePath);
 			XSSFWorkbook workBookCount = new XSSFWorkbook(file1Count);
-			XSSFSheet sheetCount = workBookCount.getSheetAt(0);
+			XSSFSheet sheetCount = workBookCount.getSheetAt(selectedSheet);
 
 			int totalNumberOfRowsInExcel1Count = sheetCount.getLastRowNum();
 
 			int columnIndex = selectedCounted;
-			
+
 			int total = 0;
+			double totalP = 0;
 
 			Set<String> set = new HashSet<>();
 
 			for (int r = 1; r <= totalNumberOfRowsInExcel1Count; r++) {
+
+				if (sheetCount.getRow(r) == null) {
+					continue;
+				}
+				if (sheetCount.getRow(r).getCell(columnIndex) == null) {
+					continue;
+				}
+				
 				set.add(sheetCount.getRow(r).getCell(columnIndex).toString());
+
 			}
 
 			String[] setToStringArr = set.toArray(new String[set.size()]);
@@ -1392,6 +1425,13 @@ public class ExcelTaskAuto extends JFrame {
 
 				for (int j = 1; j <= totalNumberOfRowsInExcel1Count; j++) {
 
+					if (sheetCount.getRow(j) == null) {
+						continue;
+					}
+					if (sheetCount.getRow(j).getCell(columnIndex) == null) {
+						continue;
+					}
+					
 					if (setToStringArr[i].equalsIgnoreCase(sheetCount.getRow(j).getCell(columnIndex).toString())) {
 						arr[i]++;
 					}
@@ -1401,8 +1441,24 @@ public class ExcelTaskAuto extends JFrame {
 			for (int count1 : arr) {
 //				System.out.println(count);
 				total += count1;
+//				totalP += count1;
 			}
-			
+
+			// percentage
+			double[] arrPer = new double[set.size()];
+//			double percentage = 0;
+
+			for (int count1 : arr) {
+//				System.out.println(count1);
+				totalP += count1;
+			}
+
+//			System.out.println("total:"+totalP);
+
+			for (int i = 0; i < arrPer.length; i++) {
+				arrPer[i] = (arr[i] / totalP) * 100;
+			}
+
 			// creating new working and adding new rows for excel1
 			XSSFWorkbook workBookOutput1 = new XSSFWorkbook();
 			XSSFSheet sheetCreate1 = workBookOutput1.createSheet();
@@ -1411,39 +1467,39 @@ public class ExcelTaskAuto extends JFrame {
 			for (int r = 0; r <= setToStringArr.length; r++) {
 				rowCreated = sheetCreate1.createRow(r);
 
-				for (int c = 0; c < 3; c++) {
+				for (int c = 0; c < 4; c++) {
 					rowCreated.createCell(c);
 				}
 			}
 
-			for (int c = 0; c < 3; c++) {
+			for (int c = 0; c < 4; c++) {
 				for (int i = 0; i <= setToStringArr.length; i++) {
-					
-					if(i < setToStringArr.length) {
-						
-					if (c == 0 && i == 0) {
-						sheetCreate1.getRow(i).getCell(c).setCellValue(selectedCountedName);
-					} else if (c == 1) {
-						sheetCreate1.getRow(i).getCell(c).setCellValue(setToStringArr[i]);
-					} else if (c == 2) {
-						sheetCreate1.getRow(i).getCell(c).setCellValue(arr[i]);
-					} 
-					
+
+					if (i < setToStringArr.length) {
+
+						if (c == 0 && i == 0) {
+							sheetCreate1.getRow(i).getCell(c).setCellValue(selectedCountedName);
+						} else if (c == 1) {
+							sheetCreate1.getRow(i).getCell(c).setCellValue(setToStringArr[i]);
+						} else if (c == 2) {
+							sheetCreate1.getRow(i).getCell(c).setCellValue(arr[i]);
+						} else if (c == 3) {
+							sheetCreate1.getRow(i).getCell(c).setCellValue(String.format("%.2f", arrPer[i]) + " %");
+						}
 					}
-					
-					if(i <= setToStringArr.length) {
-					
-					if (c == 1 && i == setToStringArr.length) {
-						sheetCreate1.getRow(i).getCell(c).setCellValue("total:");
-					} else if (c == 2 && i == setToStringArr.length) {
-						sheetCreate1.getRow(i).getCell(c).setCellValue(total);
-					}
-					
+
+					if (i <= setToStringArr.length) {
+
+						if (c == 1 && i == setToStringArr.length) {
+							sheetCreate1.getRow(i).getCell(c).setCellValue("total:");
+						} else if (c == 2 && i == setToStringArr.length) {
+							sheetCreate1.getRow(i).getCell(c).setCellValue(total);
+						}
 					}
 				}
 			}
 
-			String targetPathCount = filecreateFolder + "\\Count_"+ fileName;
+			String targetPathCount = folderPath + "\\Count_" + fileName;
 
 			FileOutputStream outputStream11 = new FileOutputStream(targetPathCount);
 			workBookOutput1.write(outputStream11);
@@ -1451,23 +1507,163 @@ public class ExcelTaskAuto extends JFrame {
 			workBookOutput1.close();
 			workBookCount.close();
 
-			JOptionPane.showMessageDialog(ExcelTaskAuto.this, "Count Excel created", "Excel", JOptionPane.PLAIN_MESSAGE);
+			JOptionPane.showMessageDialog(ExcelTaskAuto.this, "Count Excel created", "Excel",
+					JOptionPane.PLAIN_MESSAGE);
 			System.out.println("Count1......Done");
 
 		} catch (NullPointerException ne) {
-			count++;
+//			count++;
+			ne.printStackTrace();
 		} catch (FileNotFoundException e1) {
-//			e1.printStackTrace();
-			count++;
+			e1.printStackTrace();
+//			count++;
 		} catch (IOException ee) {
-//			ee.printStackTrace();
-			count++;
+			ee.printStackTrace();
+//			count++;
 		}
 
 		return count;
 
 	}
-	
+
+//	private void countExcel1(String filePath, String folderPath, String fileName, int selectedCounted,
+//			String selectedCountedName) {
+//
+//		System.out.println("inside countExcel");
+//
+//		System.out.println("filePath:" + filePath);
+//		System.out.println("folderPath:" + folderPath);
+//		System.out.println("fileName:" + fileName);
+//		System.out.println("selectedCounted:" + selectedCounted);
+//		System.out.println("selectedCountedName:" + selectedCountedName);
+//
+//		filecreateFolder = new File(folderPath + "\\Output");
+//
+////		int count = 0;
+//		try {
+//
+//			FileInputStream file1Count = new FileInputStream(filePath);
+//			XSSFWorkbook workBookCount = new XSSFWorkbook(file1Count);
+//			XSSFSheet sheetCount = workBookCount.getSheetAt(0);
+//
+//			int totalNumberOfRowsInExcel1Count = sheetCount.getLastRowNum();
+//
+//			int columnIndex = selectedCounted;
+//
+//			int total = 0;
+//			double totalP = 0;
+//
+//			Set<String> set = new HashSet<>();
+//
+//			for (int r = 1; r <= totalNumberOfRowsInExcel1Count; r++) {
+//				set.add(sheetCount.getRow(r).getCell(columnIndex).toString());
+//			}
+//
+//			String[] setToStringArr = set.toArray(new String[set.size()]);
+//			int[] arr = new int[set.size()];
+//
+////			for (int i = 0; i < setToStringArr.length; i++) {
+////				System.out.println(setToStringArr[i]);
+////			}
+//
+//			for (int i = 0; i < setToStringArr.length; i++) {
+//
+//				for (int j = 1; j <= totalNumberOfRowsInExcel1Count; j++) {
+//
+//					if (setToStringArr[i].equalsIgnoreCase(sheetCount.getRow(j).getCell(columnIndex).toString())) {
+//						arr[i]++;
+//					}
+//				}
+//			}
+//
+//			for (int count1 : arr) {
+////				System.out.println(count);
+//				total += count1;
+////				totalP += count1;
+//			}
+//
+//			// percentage
+//			double[] arrPer = new double[set.size()];
+////			double percentage = 0;
+//
+//			for (int count1 : arr) {
+////				System.out.println(count1);
+//				totalP += count1;
+//			}
+//
+////			System.out.println("total:"+totalP);
+//
+//			for (int i = 0; i < arrPer.length; i++) {
+//				arrPer[i] = (arr[i] / totalP) * 100;
+//			}
+//
+//			// creating new working and adding new rows for excel1
+//			XSSFWorkbook workBookOutput1 = new XSSFWorkbook();
+//			XSSFSheet sheetCreate1 = workBookOutput1.createSheet();
+//			XSSFRow rowCreated = null;
+//
+//			for (int r = 0; r <= setToStringArr.length; r++) {
+//				rowCreated = sheetCreate1.createRow(r);
+//
+//				for (int c = 0; c < 4; c++) {
+//					rowCreated.createCell(c);
+//				}
+//			}
+//
+//			for (int c = 0; c < 4; c++) {
+//				for (int i = 0; i <= setToStringArr.length; i++) {
+//
+//					if (i < setToStringArr.length) {
+//
+//						if (c == 0 && i == 0) {
+//							sheetCreate1.getRow(i).getCell(c).setCellValue(selectedCountedName);
+//						} else if (c == 1) {
+//							sheetCreate1.getRow(i).getCell(c).setCellValue(setToStringArr[i]);
+//						} else if (c == 2) {
+//							sheetCreate1.getRow(i).getCell(c).setCellValue(arr[i]);
+//						} else if (c == 3) {
+//							sheetCreate1.getRow(i).getCell(c).setCellValue(String.format("%.2f", arrPer[i]) + " %");
+//						}
+//					}
+//
+//					if (i <= setToStringArr.length) {
+//
+//						if (c == 1 && i == setToStringArr.length) {
+//							sheetCreate1.getRow(i).getCell(c).setCellValue("total:");
+//						} else if (c == 2 && i == setToStringArr.length) {
+//							sheetCreate1.getRow(i).getCell(c).setCellValue(total);
+//						}
+//					}
+//				}
+//			}
+//
+//			String targetPathCount = filecreateFolder + "\\Count_" + fileName;
+//
+//			FileOutputStream outputStream11 = new FileOutputStream(targetPathCount);
+//			workBookOutput1.write(outputStream11);
+//
+//			workBookOutput1.close();
+//			workBookCount.close();
+//
+//			JOptionPane.showMessageDialog(ExcelTaskAuto.this, "Count Excel created", "Excel",
+//					JOptionPane.PLAIN_MESSAGE);
+//			System.out.println("Count1......Done");
+//
+//		} catch (NullPointerException ne) {
+////			count++;
+//			ne.printStackTrace();
+//		} catch (FileNotFoundException e1) {
+//			e1.printStackTrace();
+////			count++;
+//		} catch (IOException ee) {
+//			ee.printStackTrace();
+////			count++;
+//		}
+//
+////		return count;
+//
+//	}
+
 //	swing started
 //------------------------------------------------------------------------------------------------------------
 
@@ -1535,32 +1731,34 @@ public class ExcelTaskAuto extends JFrame {
 	String SystemFolderPath;
 
 	// count ki liye
-		private JLabel COUNT = new JLabel("COUNT1 :");
-		private JLabel COUNT2 = new JLabel("COUNT2 :");
-		
+	private JLabel COUNT = new JLabel("COUNT1 :");
+	private JLabel COUNT2 = new JLabel("COUNT2 :");
 
-		private JComboBox<String> headerDropCount = new JComboBox<String>();
-		private JComboBox<String> headerDropCount2 = new JComboBox<String>();
+	private JComboBox<String> headerDropCount = new JComboBox<String>();
+	private JComboBox<String> headerDropCount2 = new JComboBox<String>();
 
-		private JButton buttonCount = new JButton("buttonCount");
-		private JButton buttonCount2 = new JButton("buttonCount2");
-		
-		int selectedCounted;
-		String selectedCountedName;
-		int selectedCounted2;
-		String selectedCountedName2;
-		String filePath1Count;
-		String filePath2Count;
+	private JButton buttonCount = new JButton("buttonCount");
+	private JButton buttonCount2 = new JButton("buttonCount2");
 
-		String targetFolderForCount;
-		String fileName1ForCount;
-		String fileName2ForCount;
+	int selectedCounted;
+	int sheetCount;
+	int sheetCount2;
 
-		String filePathForCount;
-		String filePath2ForCount;
-		protected File file;
+	String selectedCountedName;
+	int selectedCounted2;
+	String selectedCountedName2;
+	String filePath1Count;
+	String filePath2Count;
 
-	// constructor called
+	String targetFolderForCount;
+	String fileName1ForCount;
+	String fileName2ForCount;
+
+	String filePathForCount;
+	String filePath2ForCount;
+	protected File file;
+
+	// constructor
 	private ExcelTaskAuto() {
 
 		// setting title
@@ -1595,24 +1793,32 @@ public class ExcelTaskAuto extends JFrame {
 						if (fileName.substring(fileName.length() - 5).equals(".xlsx") && j == true) {
 
 							SystemFilePath1 = projectPath + "\\" + fileName;
+							fileName1ForCount = fileName;
 							j = false;
 						}
 
 						if (fileName.substring(fileName.length() - 5).equals(".xlsx") && j == false) {
 
 							SystemFilePath2 = projectPath + "\\" + fileName;
+							fileName2ForCount = fileName;
 
 							if (SystemFilePath1.equals(SystemFilePath2)) {
 								SystemFilePath2 = null;
 							}
-
 						}
 					}
 				}
 			}
 
+			filePathForCount = SystemFilePath1;
+			filePath2ForCount = SystemFilePath2;
+
+//			filecreateFolder = new File(targetFolderForCount);
+
 			SystemFileFolder = projectPath;
 			SystemFolderPath = projectPath;
+
+			targetFolderForCount = SystemFolderPath;
 
 			try {
 
@@ -1937,7 +2143,6 @@ public class ExcelTaskAuto extends JFrame {
 				headerDrop.removeAllItems();
 				headerDropCount.removeAllItems();
 
-
 				int selectedSheet1 = selectSheet1Drop.getSelectedIndex();
 				SystemFile1Sheet = selectedSheet1;
 
@@ -1947,6 +2152,8 @@ public class ExcelTaskAuto extends JFrame {
 				}
 
 				sheetNo1 = selectedSheet1;
+//				selectedCounted = sheetNo1;
+				sheetCount = sheetNo1;
 				sheetName1 = sheet1.getSheetName();
 
 				if (sheet1.getRow(0) == null) {
@@ -2077,7 +2284,7 @@ public class ExcelTaskAuto extends JFrame {
 
 				headerDrop2.removeAllItems();
 				headerDropCount2.removeAllItems();
-				
+
 				int selectedSheet2 = selectSheet2Drop2.getSelectedIndex();
 				SystemFile2Sheet = selectedSheet2;
 
@@ -2088,6 +2295,8 @@ public class ExcelTaskAuto extends JFrame {
 				}
 
 				sheetNo2 = selectedSheet2;
+//				selectedSheet2 = sheetNo2;
+				sheetCount2 = sheetNo2;
 				sheetName2 = sheet2.getSheetName();
 
 				if (sheet2.getRow(0) == null) {
@@ -2104,7 +2313,8 @@ public class ExcelTaskAuto extends JFrame {
 							headerDrop2.addItem("");
 							headerDropCount2.addItem("");
 						} else {
-							headerDrop2.addItem("" + row.getCell(c));headerDropCount2.addItem("" + row.getCell(c));
+							headerDrop2.addItem("" + row.getCell(c));
+							headerDropCount2.addItem("" + row.getCell(c));
 						}
 					} // for
 				}
@@ -2246,7 +2456,7 @@ public class ExcelTaskAuto extends JFrame {
 					if (e <= 1) {
 						JOptionPane.showMessageDialog(ExcelTaskAuto.this, "Excel created", "Excel",
 								JOptionPane.PLAIN_MESSAGE);
-						
+
 						file = new File(SystemFolderPath);
 
 						int ii = JOptionPane.showConfirmDialog(null,
@@ -2287,10 +2497,10 @@ public class ExcelTaskAuto extends JFrame {
 								"Both File 1 and File 2 are Same Select other file", "File", JOptionPane.ERROR_MESSAGE);
 						path2 = null;
 						displayFileName2.setText("");
-						
+
 						headerDrop2.removeAllItems();
 						headerDropCount2.removeAllItems();
-						
+
 					} else if (path1 != null && path2 != null && SystemFolderPath != null) {
 
 						int e = fetchExcel(path1, path2, sheetNo1, sheetNo2, key1, key2, fileName1, fileName2,
@@ -2299,7 +2509,7 @@ public class ExcelTaskAuto extends JFrame {
 						if (e <= 1) {
 							JOptionPane.showMessageDialog(ExcelTaskAuto.this, "Excel created", "Excel",
 									JOptionPane.PLAIN_MESSAGE);
-							
+
 							file = new File(SystemFolderPath);
 
 							int ii = JOptionPane.showConfirmDialog(null,
@@ -2338,7 +2548,7 @@ public class ExcelTaskAuto extends JFrame {
 				if (eq <= 1) {
 					JOptionPane.showMessageDialog(ExcelTaskAuto.this, "Excel created", "Excel",
 							JOptionPane.PLAIN_MESSAGE);
-					
+
 					file = new File(SystemFolderPath);
 
 					int ii = JOptionPane.showConfirmDialog(null,
@@ -2379,7 +2589,7 @@ public class ExcelTaskAuto extends JFrame {
 					displayFileName2.setText("");
 					headerDrop2.removeAllItems();
 					headerDropCount2.removeAllItems();
-					
+
 				} else if ((path1 != null && path2 != null && SystemFolderPath != null)) {
 
 					int ee = duplicateExcel(path1, path2, sheetNo1, sheetNo2, key1, key2, fileName1, fileName2,
@@ -2388,7 +2598,7 @@ public class ExcelTaskAuto extends JFrame {
 					if (ee <= 1) {
 						JOptionPane.showMessageDialog(ExcelTaskAuto.this, "Excel created", "Excel",
 								JOptionPane.PLAIN_MESSAGE);
-						
+
 						file = new File(SystemFolderPath);
 
 						int ii = JOptionPane.showConfirmDialog(null,
@@ -2444,7 +2654,6 @@ public class ExcelTaskAuto extends JFrame {
 			}
 
 		});
-		
 
 		constraints.gridy = 9;
 		constraints.gridx = 0;
@@ -2470,26 +2679,28 @@ public class ExcelTaskAuto extends JFrame {
 
 		buttonCount.addActionListener((e) -> {
 			if (e.getSource() == buttonCount) {
-				
-				System.out.println("filePathForCount:"+filePathForCount);
-				
-				int a = countExcel(filePathForCount, targetFolderForCount, fileName1ForCount, selectedCounted, selectedCountedName);
 
-				if (a < 1) {
-					int ii = JOptionPane.showConfirmDialog(null,
-							"We Have to close this window in order to open newly generated Excel, Because these are already open or are in use by javaw.exe Or if have to get more excels then click on No",
-							"Exit?", JOptionPane.YES_NO_OPTION);
-					if (ii == 1) {
-						// do nothing
+//				System.out.println("filePathForCount:"+filePathForCount);
+
+				int a = countExcel(filePathForCount, targetFolderForCount, fileName1ForCount, selectedCounted, sheetCount,
+						selectedCountedName);
+
+				if (a == 0) {
+				int ii = JOptionPane.showConfirmDialog(null,
+						"We Have to close this window in order to open newly generated Excel, Because these are already open or are in use by javaw.exe Or if have to get more excels then click on No",
+						"Exit?", JOptionPane.YES_NO_OPTION);
+				if (ii == 1) {
+					// do nothing
+				}
+				if (ii == 0) {
+					try {
+						File f = new File(targetFolderForCount);
+						desktop.open(f);
+					} catch (IOException eeee) {
+						eeee.printStackTrace();
 					}
-					if (ii == 0) {
-						try {
-							desktop.open(file);
-						} catch (IOException eeee) {
-							eeee.printStackTrace();
-						}
-						System.exit(0);
-					}
+					System.exit(0);
+				}
 				} else {
 					JOptionPane.showMessageDialog(ExcelTaskAuto.this,
 							"Excels creation NOT DONE/File is missing - Something is wrong!", "Excel !",
@@ -2521,14 +2732,15 @@ public class ExcelTaskAuto extends JFrame {
 		add(buttonCount2, constraints);
 
 		buttonCount2.addActionListener((e) -> {
-			
-			System.out.println("filePath2ForCount:"+filePath2ForCount);
-			
+
+//			System.out.println("filePath2ForCount:" + filePath2ForCount);
 
 			if (e.getSource() == buttonCount2) {
-				int a = countExcel(filePath2ForCount, targetFolderForCount, fileName2ForCount, selectedCounted2, selectedCountedName2);
 
-				if (a < 1) {
+			int a = countExcel(filePath2ForCount, targetFolderForCount, fileName2ForCount, selectedCounted2, sheetCount2,
+						selectedCountedName2);
+
+				if (a == 0) {
 					int ii = JOptionPane.showConfirmDialog(null,
 							"We Have to close this window in order to open newly generated Excel, Because these are already open or are in use by javaw.exe Or if have to get more excels then click on No",
 							"Exit?", JOptionPane.YES_NO_OPTION);
@@ -2537,7 +2749,8 @@ public class ExcelTaskAuto extends JFrame {
 					}
 					if (ii == 0) {
 						try {
-							desktop.open(file);
+							File f = new File(targetFolderForCount);
+							desktop.open(f);
 						} catch (IOException eeee) {
 							eeee.printStackTrace();
 						}

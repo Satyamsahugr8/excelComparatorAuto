@@ -2022,6 +2022,10 @@ public class ExcelTaskAuto extends JFrame {
 		constraints.gridy = 0;
 		constraints.gridx = 0;
 		add(labelFILE1, constraints);
+		
+//		constraints.gridy = 1;
+//		constraints.gridx = 0;
+//		add(labelFILE2, constraints);
 
 		constraints.gridy = 0;
 		constraints.gridx = 1;

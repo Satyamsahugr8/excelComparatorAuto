@@ -11,17 +11,13 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JList;
 import javax.swing.JOptionPane;
-import javax.swing.JScrollPane;
-import javax.swing.ListSelectionModel;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 
@@ -39,9 +35,6 @@ public class ExcelOnlyCount extends JFrame {
 		return instance;
 	}
 
-	// systemField
-	int SystemFile1Sheet;
-	int SystemFile2Sheet;
 	int systemSheetNo1;
 	int systemSheetNo2;
 
@@ -85,29 +78,35 @@ public class ExcelOnlyCount extends JFrame {
 	Desktop desktop = Desktop.getDesktop();
 	File file;
 
+	ArrayList<Integer> countArray1 = new ArrayList<>();
+	ArrayList<Integer> countArray2 = new ArrayList<>();
+
 	private int countExcel(String filePath, String folderPath, String fileName, int selectedCounted, int selectedSheet,
-			String selectedCountedName) {
+			String selectedCountedName, ArrayList<Integer> countArray) {
 
 		System.out.println("inside countExcel");
 
-		System.out.println("filePath:" + filePath);
-		System.out.println("folderPath:" + folderPath);
-		System.out.println("fileName:" + fileName);
-		System.out.println("selectedCounted:" + selectedCounted);
-		System.out.println("selectedSheet:" + selectedSheet);
-		System.out.println("selectedCountedName:" + selectedCountedName);
-
-//		filecreateFolder = new File(folderPath + "\\Output");
+//		System.out.println("filePath:" + filePath);
+//		System.out.println("folderPath:" + folderPath);
+//		System.out.println("fileName:" + fileName);
+//		System.out.println("selectedCounted:" + selectedCounted);
+//		System.out.println("selectedSheet:" + selectedSheet);
+//		System.out.println("selectedCountedName:" + selectedCountedName);
 
 		int count = 0;
+
 		try {
 
 			FileInputStream file1Count = new FileInputStream(filePath);
 			XSSFWorkbook workBookCount = new XSSFWorkbook(file1Count);
 			XSSFSheet sheetCount = workBookCount.getSheetAt(selectedSheet);
 
-			int totalNumberOfRowsInExcel1Count = sheetCount.getLastRowNum();
+			int totalNumberOfRowsInExcelCount = sheetCount.getLastRowNum();
 
+//			for (int s= 0 ; s<countArray.size() ; s++) {
+//				int columnIndex = countArray.get(s);
+//			}
+			
 			int columnIndex = selectedCounted;
 
 			int total = 0;
@@ -115,7 +114,7 @@ public class ExcelOnlyCount extends JFrame {
 
 			Set<String> set = new HashSet<>();
 
-			for (int r = 1; r <= totalNumberOfRowsInExcel1Count; r++) {
+			for (int r = 1; r <= totalNumberOfRowsInExcelCount; r++) {
 
 				if (sheetCount.getRow(r) == null) {
 					continue;
@@ -123,21 +122,15 @@ public class ExcelOnlyCount extends JFrame {
 				if (sheetCount.getRow(r).getCell(columnIndex) == null) {
 					continue;
 				}
-
 				set.add(sheetCount.getRow(r).getCell(columnIndex).toString());
-
 			}
 
 			String[] setToStringArr = set.toArray(new String[set.size()]);
 			int[] arr = new int[set.size()];
 
-//			for (int i = 0; i < setToStringArr.length; i++) {
-//				System.out.println(setToStringArr[i]);
-//			}
-
 			for (int i = 0; i < setToStringArr.length; i++) {
 
-				for (int j = 1; j <= totalNumberOfRowsInExcel1Count; j++) {
+				for (int j = 1; j <= totalNumberOfRowsInExcelCount; j++) {
 
 					if (sheetCount.getRow(j) == null) {
 						continue;
@@ -237,14 +230,10 @@ public class ExcelOnlyCount extends JFrame {
 			ee.printStackTrace();
 //			count++;
 		}
-
 		return count;
-
 	}
 
 	private ExcelOnlyCount() {
-
-//		swing started
 
 		// setting title
 		super("EXCEL COMPARATOR");
@@ -255,8 +244,6 @@ public class ExcelOnlyCount extends JFrame {
 		GridBagConstraints constraints = new GridBagConstraints();
 		constraints.anchor = GridBagConstraints.WEST;
 		constraints.insets = new Insets(10, 10, 10, 10);
-
-		ArrayList<String> listColumn1 = new ArrayList<String>();
 
 		// getting data from configuration
 		String projectPath = System.getProperty("user.dir");
@@ -298,9 +285,6 @@ public class ExcelOnlyCount extends JFrame {
 				}
 			}
 
-//			System.out.println("filePath1Count:"+filePath1Count);
-//			System.out.println("filePathCount:"+filePath2Count);
-
 			File fileName1 = new File(filePath1Count);
 			displayFileName1.setText("");
 			if (fileName1.getName().length() < 12) {
@@ -317,11 +301,15 @@ public class ExcelOnlyCount extends JFrame {
 				displayFileName2.setText(fileName2.getName().substring(0, 12));
 			}
 
+			System.out.println("filePath1Count: " + filePath1Count);
+			System.out.println("filePath2Count: " + filePath2Count);
+
 			try {
 
 				selectSheet1Drop.removeAllItems();
 				file1 = new FileInputStream(filePath1Count);
 				workBook1 = new XSSFWorkbook(file1);
+				sheet1 = workBook1.getSheetAt(0);
 
 				int numberOfSheet1 = workBook1.getNumberOfSheets();
 
@@ -339,10 +327,8 @@ public class ExcelOnlyCount extends JFrame {
 					for (int c = 0; c < column; c++) {
 						if (row.getCell(c) == null) {
 							headerDropCount.addItem("");
-							listColumn1.add("");
 						} else {
 							headerDropCount.addItem("" + row.getCell(c));
-							listColumn1.add("" + row.getCell(c));
 						}
 					}
 				}
@@ -353,6 +339,7 @@ public class ExcelOnlyCount extends JFrame {
 			} catch (NullPointerException e) {
 				JOptionPane.showMessageDialog(ExcelOnlyCount.this, "File 1 not found", "Excel",
 						JOptionPane.PLAIN_MESSAGE);
+//				e.printStackTrace();
 			} catch (FileNotFoundException fee) {
 			}
 
@@ -361,20 +348,13 @@ public class ExcelOnlyCount extends JFrame {
 				selectSheet2Drop2.removeAllItems();
 				file2 = new FileInputStream(filePath2Count);
 				workBook2 = new XSSFWorkbook(file2);
+				sheet2 = workBook2.getSheetAt(0);
 
 				int numberOfSheet2 = workBook2.getNumberOfSheets();
 
 				for (int i = 0; i < numberOfSheet2; i++) {
 					selectSheet2Drop2.addItem(workBook2.getSheetName(i));
 				}
-
-//				// main
-//				selectSheet2Drop2.setSelectedIndex(SystemFile2Sheet);
-//
-//				try {
-//					sheet2 = workBook2.getSheetAt(SystemFile2Sheet);
-//				} catch (IllegalArgumentException dd) {
-//				}
 
 				if (sheet2.getRow(0) == null) {
 					JOptionPane.showMessageDialog(ExcelOnlyCount.this, "Excel file 2 is Empty", "Excel",
@@ -393,8 +373,6 @@ public class ExcelOnlyCount extends JFrame {
 						}
 					} // for
 				}
-
-//				headerDropCount2.setSelectedIndex(Systemkey2);
 
 			} catch (NullPointerException e) {
 				JOptionPane.showMessageDialog(ExcelOnlyCount.this, "File 2 not found", "Excel",
@@ -454,11 +432,9 @@ public class ExcelOnlyCount extends JFrame {
 			if (e.getSource() == selectSheet1Drop) {
 
 				headerDropCount.removeAllItems();
-				listColumn1.removeAll(listColumn1);
 
 				int selectedSheet1 = selectSheet1Drop.getSelectedIndex();
 				systemSheetNo1 = selectedSheet1;
-				SystemFile1Sheet = selectedSheet1;
 
 				try {
 					sheet1 = workBook1.getSheetAt(selectedSheet1);
@@ -479,33 +455,14 @@ public class ExcelOnlyCount extends JFrame {
 					for (int c = 0; c < column; c++) {
 						if (row.getCell(c) == null) {
 							headerDropCount.addItem("");
-							listColumn1.add("");
 
 						} else {
 							headerDropCount.addItem("" + row.getCell(c));
-							listColumn1.add("" + row.getCell(c));
-
 						}
-					} // for
-
+					}
 				}
 			}
 		});
-
-		
-		Object[] stringArrColumn1 = listColumn1.toArray();
-
-		for (Object object : stringArrColumn1) {
-			System.out.println(object);
-		}
-		@SuppressWarnings({ "rawtypes", "unchecked" })
-		JList<String> jlistColumn1 = new JList(stringArrColumn1);
-		jlistColumn1.setVisibleRowCount(10);
-		JScrollPane jcp = new JScrollPane(jlistColumn1);
-		constraints.gridy = 6;
-		constraints.gridx = 0;
-		add(jcp, constraints);
-		jlistColumn1.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 
 		constraints.gridy = 3;
 		constraints.gridx = 0;
@@ -525,7 +482,6 @@ public class ExcelOnlyCount extends JFrame {
 
 				int selectedSheet2 = selectSheet2Drop2.getSelectedIndex();
 				systemSheetNo2 = selectedSheet2;
-				SystemFile2Sheet = selectedSheet2;
 
 				try {
 					sheet2 = workBook2.getSheetAt(selectedSheet2);
@@ -533,13 +489,9 @@ public class ExcelOnlyCount extends JFrame {
 
 				}
 
-//				sheetNo2 = selectedSheet2;
-//				sheetName2 = sheet2.getSheetName();
-
 				if (sheet2.getRow(0) == null) {
 					JOptionPane.showMessageDialog(ExcelOnlyCount.this, "Excel file 2 is Empty", "Excel",
 							JOptionPane.ERROR_MESSAGE);
-//					path2 = null;
 				} else {
 					int column = sheet2.getRow(0).getLastCellNum();
 
@@ -571,6 +523,15 @@ public class ExcelOnlyCount extends JFrame {
 			if (e.getSource() == headerDropCount) {
 				selectedCounted = headerDropCount.getSelectedIndex();
 				selectedCountedName = (String) headerDropCount.getSelectedItem();
+
+				System.out.println("selectedCounted: " + selectedCounted);
+
+				if (selectedCounted == -1 || selectedCounted == 0) {
+				} else {
+					countArray1.add(selectedCounted);
+				}
+
+//				System.out.println("selectedCountedName: "+selectedCountedName);
 			}
 		});
 
@@ -581,10 +542,8 @@ public class ExcelOnlyCount extends JFrame {
 		buttonCount.addActionListener((e) -> {
 			if (e.getSource() == buttonCount) {
 
-//				System.out.println("filePathForCount:"+filePathForCount);
-
 				int a = countExcel(filePath1Count, targetFolderForCount, fileName1ForCount, selectedCounted,
-						systemSheetNo1, selectedCountedName);
+						systemSheetNo1, selectedCountedName, countArray1);
 
 				if (a == 0) {
 					int ii = JOptionPane.showConfirmDialog(null,
@@ -625,6 +584,11 @@ public class ExcelOnlyCount extends JFrame {
 			if (e.getSource() == headerDropCount2) {
 				selectedCounted2 = headerDropCount2.getSelectedIndex();
 				selectedCountedName2 = (String) headerDropCount2.getSelectedItem();
+
+				if (selectedCounted == -1 || selectedCounted == 0) {
+				} else {
+					countArray2.add(selectedCounted2);
+				}
 			}
 		});
 
@@ -639,7 +603,7 @@ public class ExcelOnlyCount extends JFrame {
 			if (e.getSource() == buttonCount2) {
 
 				int a = countExcel(filePath2Count, targetFolderForCount, fileName2ForCount, selectedCounted2,
-						systemSheetNo2, selectedCountedName2);
+						systemSheetNo2, selectedCountedName2, countArray2);
 
 				if (a == 0) {
 					int ii = JOptionPane.showConfirmDialog(null,
@@ -662,7 +626,6 @@ public class ExcelOnlyCount extends JFrame {
 							"Excels creation NOT DONE/File is missing - Something is wrong!", "Excel !",
 							JOptionPane.ERROR_MESSAGE);
 				}
-
 			}
 		});
 
@@ -679,10 +642,8 @@ public class ExcelOnlyCount extends JFrame {
 		} catch (Exception e) {
 		}
 
-		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
-				getInstance().setVisible(true);
-			}
+		SwingUtilities.invokeLater(() -> {
+			getInstance().setVisible(true);
 		});
 	}
 }

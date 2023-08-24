@@ -85,13 +85,10 @@ public class ExcelOnlyCount extends JFrame {
 			String selectedCountedName, ArrayList<Integer> countArray) {
 
 		System.out.println("inside countExcel");
-
-//		System.out.println("filePath:" + filePath);
-//		System.out.println("folderPath:" + folderPath);
-//		System.out.println("fileName:" + fileName);
-//		System.out.println("selectedCounted:" + selectedCounted);
-//		System.out.println("selectedSheet:" + selectedSheet);
-//		System.out.println("selectedCountedName:" + selectedCountedName);
+		
+		for (Integer integer : countArray) {
+			System.out.print(integer+",");
+		}
 
 		int count = 0;
 
